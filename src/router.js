@@ -108,7 +108,9 @@ const router = new Router({
   ]
 });
 router.beforeEach((to, from, next) => { /* eslint-disable-line */
-  Nprogress.start();
+  if (to.path !== from.path) {
+    Nprogress.start();
+  }
   next();
 });
 router.afterEach((to, from) => { /* eslint-disable-line */
