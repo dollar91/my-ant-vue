@@ -23,15 +23,6 @@
           <Header />
         </a-layout-header>
         <a-layout-content style="margin: 0 16px">
-          <div class="test">
-            <div>
-              1
-              <div>
-                2
-                <div>3</div>
-              </div>
-            </div>
-          </div>
           <router-view></router-view>
         </a-layout-content>
         <a-layout-footer style="text-align: center">

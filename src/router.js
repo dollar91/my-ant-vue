@@ -40,7 +40,7 @@ const router = new Router({
     },
     {
       path: "/",
-      // meta: { authority: ["user", "admin"] },
+      meta: { authority: ["user", "admin"] },
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout"),
       children: [
@@ -68,7 +68,7 @@ const router = new Router({
     {
       path: "/form",
       name: "form",
-      meta: { icon: "form", title: "表单", authority: ["admin"] },
+      meta: { icon: "form", title: "表单", authority: ["admin", "user"] },
       component: { render: h => h("router-view") },
       children: [
         {
