@@ -40,7 +40,7 @@ const router = new Router({
     },
     {
       path: "/",
-      meta: { authority: ["user", "admin"] },
+      // meta: { authority: ["user", "admin"] },
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout"),
       children: [
@@ -131,6 +131,7 @@ router.beforeEach((to, from, next) => { /* eslint-disable-line */
     Nprogress.start();
   }
   const record = findLast(to.matched, record => record.meta.authority);
+  console.log(record);
   if (record && !check(record.meta.authority)) {
     if (!isLogin() && to.path !== "/user/login") {
       next({
