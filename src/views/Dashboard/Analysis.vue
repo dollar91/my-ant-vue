@@ -4,7 +4,7 @@
 
 <script>
 import Chart from "../../components/Chart";
-import axios from "axios";
+import request from "../../utils/request";
 export default {
   data() {
     return {
@@ -35,12 +35,14 @@ export default {
   },
   methods: {
     getChartData() {
-      axios
-        .get("/api/dashboard/chart", { params: { ID: 12345 } })
-        .then(response => {
-          this.chartOption.series[0].data = response.data;
-          this.chartOption = { ...this.chartOption };
-        });
+      request({
+        url: "/api/dashboard/chart",
+        method: "get",
+        params: { ID: 12345 }
+      }).then(response => {
+        this.chartOption.series[0].data = response.data;
+        this.chartOption = { ...this.chartOption };
+      });
     }
   },
   beforeDestroy() {

@@ -15,15 +15,22 @@ module.exports = {
           if (req.headers.accept.indexOf("html") !== -1) {
             console.log("Skipping proxy for browser request.");
             return "/index.html";
-          } else {
+          } else if (process.env.MOCK !== "none") {
             const name = req.path
               .split("/api/")[1]
               .split("/")
               .join("_");
-            const mock = require(`./mock/${name}`);
-            const result = mock(req.method);
-            delete require.cache[require.resolve(`./mock/${name}`)];
-            return res.send(result);
+            try {
+              const mock = require(`./mock/${name}`);
+              const result = mock(req.method);
+              delete require.cache[require.resolve(`./mock/${name}`)];
+              return res.send(result);
+            } catch (e) {
+              if (e.code === "MODULE_NOT_FOUND") {
+                return res.status(404).send();
+              }
+              return res.status(500).send(e);
+            }
           }
         }
       }
