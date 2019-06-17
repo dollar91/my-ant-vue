@@ -6,6 +6,7 @@
         :theme="navTheme"
         :trigger="null"
         collapsible
+        :width="256"
         v-model="collapsed"
       >
         <div class="logo">Ant Design Vue Pro</div>
@@ -21,6 +22,15 @@
           <Header />
         </a-layout-header>
         <a-layout-content style="margin: 0 16px">
+          <div class="test">
+            <div>
+              1
+              <div>
+                2
+                <div>3</div>
+              </div>
+            </div>
+          </div>
           <router-view></router-view>
         </a-layout-content>
         <a-layout-footer style="text-align: center">
@@ -77,5 +87,8 @@ export default {
 }
 .nav-theme-dark >>> .logo {
   color: #ffffff;
+}
+.test >>> div {
+  color: red;
 }
 </style>
