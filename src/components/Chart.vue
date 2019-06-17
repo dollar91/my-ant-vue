@@ -13,6 +13,11 @@ export default {
       default: () => {}
     }
   },
+  watch: {
+    option(val) {
+      this.chart.setOption(val);
+    }
+  },
   created() {
     this.resize = debounce(this.resize, 300);
   },

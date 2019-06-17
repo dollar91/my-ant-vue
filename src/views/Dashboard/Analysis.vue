@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import random from "lodash/random";
 import Chart from "../../components/Chart";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -21,19 +21,27 @@ export default {
           {
             name: "销量",
             type: "bar",
-            data: [5, 20, 36, 10, 10, 20]
+            data: []
           }
         ]
       }
     };
   },
   mounted() {
+    this.getChartData();
     this.interval = setInterval(() => {
-      this.chartOption.series[0].data = this.chartOption.series[0].data.map(
-        () => random(100)
-      );
-      this.chartOption = { ...this.chartOption };
+      this.getChartData();
     }, 3000);
+  },
+  methods: {
+    getChartData() {
+      axios
+        .get("/api/dashboard/chart", { params: { ID: 12345 } })
+        .then(response => {
+          this.chartOption.series[0].data = response.data;
+          this.chartOption = { ...this.chartOption };
+        });
+    }
   },
   beforeDestroy() {
     clearInterval(this.interval);
