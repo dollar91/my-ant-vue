@@ -62,51 +62,51 @@ const router = new Router({
                 import(/* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis")
             }
           ]
-        }
-      ]
-    },
-    {
-      path: "/form",
-      name: "form",
-      meta: { icon: "form", title: "表单", authority: ["admin", "user"] },
-      component: { render: h => h("router-view") },
-      children: [
-        {
-          path: "/form/basic-form",
-          name: "basicform",
-          meta: { title: "基础表单" },
-          component: () =>
-            import(/* webpackChunkName: "form" */ "./views/Forms/BasicForm")
         },
         {
-          path: "/form/step-form",
-          name: "stepform",
-          hideChildrenInMenu: true,
-          meta: { title: "分布表单" },
-          component: () =>
-            import(/* webpackChunkName: "form" */ "./views/Forms/StepForm"),
+          path: "/form",
+          name: "form",
+          meta: { icon: "form", title: "表单", authority: ["admin", "user"] },
+          component: { render: h => h("router-view") },
           children: [
             {
+              path: "/form/basic-form",
+              name: "basicform",
+              meta: { title: "基础表单" },
+              component: () =>
+                import(/* webpackChunkName: "form" */ "./views/Forms/BasicForm")
+            },
+            {
               path: "/form/step-form",
-              redirect: "/form/step-form/info"
-            },
-            {
-              path: "/form/step-form/info",
-              name: "info",
+              name: "stepform",
+              hideChildrenInMenu: true,
+              meta: { title: "分布表单" },
               component: () =>
-                import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1")
-            },
-            {
-              path: "/form/step-form/confirm",
-              name: "confirm",
-              component: () =>
-                import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2")
-            },
-            {
-              path: "/form/step-form/result",
-              name: "result",
-              component: () =>
-                import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3")
+                import(/* webpackChunkName: "form" */ "./views/Forms/StepForm"),
+              children: [
+                {
+                  path: "/form/step-form",
+                  redirect: "/form/step-form/info"
+                },
+                {
+                  path: "/form/step-form/info",
+                  name: "info",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1")
+                },
+                {
+                  path: "/form/step-form/confirm",
+                  name: "confirm",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2")
+                },
+                {
+                  path: "/form/step-form/result",
+                  name: "result",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3")
+                }
+              ]
             }
           ]
         }

@@ -11,7 +11,9 @@ import {
   Menu,
   Icon,
   Drawer,
-  Radio
+  Radio,
+  Form,
+  Input
 } from "ant-design-vue";
 
 Vue.config.productionTip = false;
@@ -22,6 +24,8 @@ Vue.use(Menu);
 Vue.use(Icon);
 Vue.use(Drawer);
 Vue.use(Radio);
+Vue.use(Form);
+Vue.use(Input);
 Vue.use(Auth);
 Vue.component("Authorized", Authorized);
 
