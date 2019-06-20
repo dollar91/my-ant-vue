@@ -5,7 +5,11 @@ export default {
   state: {
     step: {
       payAccount: "123456",
-      password: "111"
+      password: "111",
+      receiverAccount: {
+        type: "alipay",
+        number: ""
+      }
     }
   },
   actions: {
