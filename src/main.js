@@ -4,6 +4,10 @@ import router from "./router";
 import store from "./store";
 import Authorized from "./components/Authorized";
 import Auth from "./directives/auth";
+import enUS from "./locale/enUS";
+import zhCN from "./locale/zhCN";
+import queryString from "query-string";
+import VueI18n from "vue-i18n";
 import {
   Button,
   Layout,
@@ -14,7 +18,10 @@ import {
   Radio,
   Form,
   Input,
-  Select
+  Select,
+  LocaleProvider,
+  Dropdown,
+  DatePicker
 } from "ant-design-vue";
 
 const IconFont = Icon.createFromIconfontCN({
@@ -31,11 +38,23 @@ Vue.use(Radio);
 Vue.use(Form);
 Vue.use(Input);
 Vue.use(Select);
+Vue.use(Dropdown);
+Vue.use(DatePicker);
 Vue.use(Auth);
+Vue.use(LocaleProvider);
+Vue.use(VueI18n);
 Vue.component("Authorized", Authorized);
 Vue.component("IconFont", IconFont);
 
+const i18n = new VueI18n({
+  locale: queryString.parse(location.search).locale || "zhCN",
+  messages: {
+    zhCN: { message: zhCN },
+    enUS: { message: enUS }
+  }
+});
 new Vue({
+  i18n,
   router,
   store,
   render: h => h(App)
