@@ -1,5 +1,5 @@
 <template>
-  <div>404</div>
+  <div><IconFont type="icon-icon-test" style="font-size: 100px" /></div>
 </template>
 
 <script>

@@ -17,6 +17,9 @@ import {
   Select
 } from "ant-design-vue";
 
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_1252427_kzpuh1tlwfj.js"
+});
 Vue.config.productionTip = false;
 Vue.use(Button);
 Vue.use(Layout);
@@ -30,6 +33,7 @@ Vue.use(Input);
 Vue.use(Select);
 Vue.use(Auth);
 Vue.component("Authorized", Authorized);
+Vue.component("IconFont", IconFont);
 
 new Vue({
   router,
